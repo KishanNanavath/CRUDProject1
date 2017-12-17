@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">-->
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+    <script type="text/javascript" src="../JS/dashboardMain.js"></script>
+    <style>
+        ._md-visually-hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body ng-cloak ng-app="dashApp" ng-controller="dashCtrl">
+<md-toolbar md-scroll-shrink layout="row" layout-align="center center" layout-padding>
+    <div class="md-toolbar-tools">Dashboard</div>
+    <div >
+        <md-button ng-click="logoutFunc()" type="button" class="md-primary md-raised">Logout</md-button>
+    </div>
+</md-toolbar>
+<md-card flex layout="column" layout-padding>
+    <md-card-content>
+        <md-tabs md-dynamic-height flex layout-fill md-border-bottom md-stretch-tabs="always" md-swipe-content="true">
+            <md-tab label="Profile">
+                <md-tab-body>
+                    <form name="userForm" ng-submit="updateProfile()">
+                        <div layout="row" layout-padding>
+                            <div layout-padding layout="column" flex>
+                                <md-input-container>
+                                    <label>First Name</label>
+                                    <input   ng-model="profile.name" ng-disabled="!editProfile" name="name" required>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Mobile Number</label>
+                                    <input  ng-disabled="!editProfile" ng-model="profile.mobile" ng-disabled="!editProfile" name="mobile"  required>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Email ID</label>
+                                    <input   ng-model="profile.email" ng-disabled="!editProfile" name="email" required>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Address</label>
+                                    <input  ng-disabled="!editProfile" ng-model="profile.address" ng-disabled="!editProfile" name="address"  required>
+                                </md-input-container>
+
+                            </div>
+                            <!--<div layout-padding layout="column" flex>-->
+                                <!--<md-input-container>-->
+                                    <!--<label>Department</label>-->
+                                    <!--<input  ng-disabled="!editProfile" ng-model="profile.department" ng-disabled="!editProfile" name="lastName"  required>-->
+
+                                <!--</md-input-container>-->
+                                <!--&lt;!&ndash;<md-input-container>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<label>Joining Date</label>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input value="{{ profile.joiningDate | date: 'yyyy-MM-dd' }}" type="date" ng-disabled="!editProfile" ng-model="profile.joiningDate" required>&ndash;&gt;-->
+
+                                <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
+                            <!--</div>-->
+                        </div>
+                        <div layout="row" layout-padding ng-hide="!editProfile">
+                            <md-input-container flex>
+                                <md-button ng-click="cancelFunc()" type="button" class="md-primary md-raised">Cancel</md-button>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <md-button ng-disabled="isEmpty(profile)" type="submit" class="md-primary md-raised">Update</md-button>
+                            </md-input-container>
+                        </div>
+                        <md-input-container ng-hide="editProfile">
+                            <md-button ng-click="editFunc()" type="button" class="md-primary md-raised">Edit</md-button>
+                        </md-input-container>
+                    </form>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+    </md-card-content>
+</md-card>
+</body>
+</html>
